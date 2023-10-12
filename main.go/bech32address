@@ -1,0 +1,24 @@
+package main
+
+import (
+    "fmt"
+    "github.com/btcsuite/btcutil/bech32"
+)
+
+func main() {
+    // Define the human-readable part (HRP) and a byte slice for data.
+    // Replace "myhrp" and the data with your actual values.
+    hrp := "moa"
+    data := []byte{0x01, 0x02, 0x03} // Replace with your data.
+
+    // Encode the data into a Bech32 string.
+    encoded, err := bech32.ConvertBits(data, 8, 5, true)
+    if err != nil {
+        fmt.Println("Error encoding:", err)
+        return
+    }
+
+    // Create a Bech32 address string.
+    address := bech32.Encode(hrp, encoded)
+    fmt.Println("Bech32 Address:", address)
+}
